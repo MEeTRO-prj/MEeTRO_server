@@ -2,7 +2,6 @@
 include_once './DbConnect.php';
 
 function getUser(){
-    //$db = new DbConnect();
     // array for json response
     $response = array();
     $response["user"] = array();
