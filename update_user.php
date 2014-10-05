@@ -9,7 +9,7 @@ function updateUser(){
    $regi_id = $_POST["REGI_ID"];
 
    // mysql query
-   $query = "UPDATE USER SET REGI_ID = '$regi_id' WHERE USER_ID = '$user_id')";
+   $query = "UPDATE USER SET REGI_ID = '$regi_id' WHERE USER_ID = '$user_id'";
    $result = mysql_query($query) or die(mysql_error());
    if ($result) {
     $response["error"] = false;
