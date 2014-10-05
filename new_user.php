@@ -14,7 +14,10 @@ function createNewUser() {
        if ($result) {
               $response["error"] = false;
               $response["message"] = "User created successfully!";
-              $response["user_id"] = mysql_query("SELECT USER_ID FROM USER WHERE REGI_ID = '$regi_id' ORDER BY USER_ID DESC");
+              $selected = mysql_query("SELECT USER_ID FROM USER WHERE REGI_ID = '$regi_id' ORDER BY USER_ID DESC LIMIT 1");
+              while ($row = mysql_fetch_array($selected)) {
+                      $response["user_id"] = $row["USER_ID"];
+              }
        } else {
               $response["error"] = true;
               $response["message"] = "Failed to create user!";
