@@ -1,7 +1,7 @@
 <?php
 include_once './DbConnect.php';
 
-function getUser(){
+function getRoomList(){
     $user_id = $_POST["USER_ID"];
 
     // array for json response
@@ -9,11 +9,12 @@ function getUser(){
     $response["room"] = array();
 
     // Mysql select query
-    $query = "SELECT * FROM ROOM WHERE OWNER_ID = '$user_id";
+    $query = "SELECT * FROM ROOM WHERE OWNER_ID = '$user_id' ORDER BY ROOM_ID";
     $result = mysql_query($query);
 
     while ($row = mysql_fetch_array($result)) {
         $tmp = array();
+        $tmp["room_id"] = $row["ROOM_ID"];
         $tmp["owner_id"] = $row["OWNER_ID"];
         $tmp["ride_date"] = $row["RIDE_DATE"];
         $tmp["ride_time"] = $row["RIDE_TIME"];
@@ -35,5 +36,5 @@ function getUser(){
     echo json_encode($response);
 }
 
-getUser();
+getRoomList();
 ?>

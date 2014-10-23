@@ -23,9 +23,9 @@ function createNewUser() {
     $selected = mysql_query("SELECT ROOM_ID FROM ROOM WHERE OWNER_ID = '$owner_id' ORDER BY ROOM_ID DESC LIMIT 1");
     while ($row = mysql_fetch_array($selected)) {
       $response["room_id"] = $row["ROOM_ID"];
+      $room_id = $row["ROOM_ID"];
     }
-    $room_id = $row["ROOM_ID"];
-    $query2 = "INSERT INTO MEMBER (MEMBER_ID, ROOM_ID, OWNER_ID, RIDE_ST, RIDE_TIME) VALUES(NULL, '$room_id' '$owner_id', '$ride_st', '$ride_time')";
+    $query2 = "INSERT INTO MEMBER (MEMBER_ID, ROOM_ID, OWNER_ID, RIDE_ST, RIDE_TIME) VALUES(NULL, '$room_id', '$owner_id', '$ride_st', '$ride_time')";
     $result2 = mysql_query($query2) or die(mysql_error());
   } else {
     $response["error"] = true;
