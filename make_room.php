@@ -26,7 +26,7 @@ function createNewUser() {
     }
     $room_id = $row["ROOM_ID"];
     $query2 = "INSERT INTO MEMBER (MEMBER_ID, ROOM_ID, OWNER_ID, RIDE_ST, RIDE_TIME) VALUES(NULL, '$room_id' '$owner_id', '$ride_st', '$ride_time')";
-    $result2 = mysql_query($query) or die(mysql_error());
+    $result2 = mysql_query($query2) or die(mysql_error());
   } else {
     $response["error"] = true;
     $response["message"] = "Failed to create room!";
