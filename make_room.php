@@ -1,7 +1,7 @@
 <?php
 include_once './DbConnect.php';
 
-function createNewUser() {
+function makeRoom() {
   if (isset($_POST["OWNER_ID"]) && $_POST["OWNER_ID"] != "") {
    // response array for json
    $response = array();
@@ -12,9 +12,12 @@ function createNewUser() {
    $railway_id = $_POST["RAILWAY_ID"];
    $ride_st = $_POST["RIDE_ST"];
    $dest_st = $_POST["DEST_ST"];
+   $end_st = $_POST["END_ST"];
+   $train_type = $_POST["TRAIN_TYPE"];
+   $car_num = $_POST["CAR_NUM"];
 
    // mysql query
-   $query = "INSERT INTO ROOM (ROOM_ID, OWNER_ID, RIDE_DATE, RIDE_TIME, TIME_TYPE, RAILWAY_ID, RIDE_ST, DEST_ST, CAR_NUM, UPDATED_DATE, USE_FLG) VALUES(NULL, '$owner_id', '$ride_date', '$ride_time', '$time_type', '$railway_id', '$ride_st', '$dest_st', 1, SYSDATE(), '0')";
+   $query = "INSERT INTO ROOM (ROOM_ID, OWNER_ID, RIDE_DATE, RIDE_TIME, TIME_TYPE, RAILWAY_ID, RIDE_ST, DEST_ST, END_ST, TRAIN_TYPE, CAR_NUM, UPDATED_DATE, USE_FLG) VALUES(NULL, '$owner_id', '$ride_date', '$ride_time', '$time_type', '$railway_id', '$ride_st', '$dest_st', '$end_st', '$train_type', '$car_num', SYSDATE(), '0')";
    $result = mysql_query($query) or die(mysql_error());
 
    if ($result) {
@@ -25,7 +28,7 @@ function createNewUser() {
       $response["room_id"] = $row["ROOM_ID"];
       $room_id = $row["ROOM_ID"];
     }
-    $query2 = "INSERT INTO MEMBER (MEMBER_ID, ROOM_ID, OWNER_ID, RIDE_ST, RIDE_TIME) VALUES(NULL, '$room_id', '$owner_id', '$ride_st', '$ride_time')";
+    $query2 = "INSERT INTO MEMBER (MEMBER_ID, ROOM_ID, USER_ID, RIDE_ST, RIDE_TIME) VALUES(NULL, '$room_id', '$owner_id', '$ride_st', '$ride_time')";
     $result2 = mysql_query($query2) or die(mysql_error());
   } else {
     $response["error"] = true;
@@ -39,5 +42,5 @@ function createNewUser() {
 echo json_encode($response);
 }
 
-createNewUser();
+makeRoom();
 ?>

@@ -9,7 +9,7 @@ function getRoomList(){
     $response["room"] = array();
 
     // Mysql select query
-    $query = "SELECT * FROM ROOM WHERE OWNER_ID = '$user_id' ORDER BY ROOM_ID";
+    $query = "SELECT * FROM ROOM R JOIN MEMBER M ON R.ROOM_ID = M.ROOM_ID WHERE M.USER_ID = '$user_id' ORDER BY R.ROOM_ID";
     $result = mysql_query($query);
 
     while ($row = mysql_fetch_array($result)) {
@@ -22,6 +22,8 @@ function getRoomList(){
         $tmp["railway_id"] = $row["RAILWAY_ID"];
         $tmp["ride_st"] = $row["RIDE_ST"];
         $tmp["dest_st"] = $row["DEST_ST"];
+        $tmp["end_st"] = $row["END_ST"];
+        $tmp["train_type"] = $row["TRAIN_TYPE"];
         $tmp["car_num"] = $row["CAR_NUM"];
         $tmp["use_flg"] = $row["USE_FLG"];
 
