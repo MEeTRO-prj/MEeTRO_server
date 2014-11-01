@@ -15,9 +15,10 @@ function makeRoom() {
    $end_st = $_POST["END_ST"];
    $train_type = $_POST["TRAIN_TYPE"];
    $car_num = $_POST["CAR_NUM"];
+   $train_number = $_POST["TRAIN_NUMBER"];
 
    // mysql query
-   $query = "INSERT INTO ROOM (ROOM_ID, OWNER_ID, RIDE_DATE, RIDE_TIME, TIME_TYPE, RAILWAY_ID, RIDE_ST, DEST_ST, END_ST, TRAIN_TYPE, CAR_NUM, UPDATED_DATE, USE_FLG) VALUES(NULL, '$owner_id', '$ride_date', '$ride_time', '$time_type', '$railway_id', '$ride_st', '$dest_st', '$end_st', '$train_type', '$car_num', SYSDATE(), '0')";
+   $query = "INSERT INTO ROOM (ROOM_ID, OWNER_ID, RIDE_DATE, RIDE_TIME, TIME_TYPE, RAILWAY_ID, RIDE_ST, DEST_ST, END_ST, TRAIN_TYPE, CAR_NUM, TRAIN_NUMBER, UPDATED_DATE, USE_FLG) VALUES(NULL, '$owner_id', '$ride_date', '$ride_time', '$time_type', '$railway_id', '$ride_st', '$dest_st', '$end_st', '$train_type', '$car_num', $train_number, SYSDATE(), '0')";
    $result = mysql_query($query) or die(mysql_error());
 
    if ($result) {

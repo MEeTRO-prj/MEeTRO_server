@@ -25,6 +25,7 @@ function getRoomList(){
         $tmp["end_st"] = $row["END_ST"];
         $tmp["train_type"] = $row["TRAIN_TYPE"];
         $tmp["car_num"] = $row["CAR_NUM"];
+        $tmp["train_number"] = $row["TRAIN_NUMBER"];
         $tmp["use_flg"] = $row["USE_FLG"];
 
         // push category to final json array
