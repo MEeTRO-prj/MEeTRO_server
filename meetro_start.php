@@ -1,5 +1,5 @@
 <?php
-$room_id = $_POST["room_id"];
+$room_id = $_GET["room_id"];
 ?>
 <!DOCTYPE html>
 <html>

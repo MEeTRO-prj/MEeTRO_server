@@ -1,8 +1,7 @@
 <?php
 include_once './DbConnect.php';
 //レジストレーションIDの配列セット
-// $registatoin_ids = array();
-// array_push($registatoin_ids, DEVICE_REGI_ID);
+$registatoin_ids = array();
 $room_id = $_POST["ROOM_ID"];
 $owner_id = $_POST["OWNER_ID"];
 $user_name = $_POST["USER_NAME"];
@@ -14,22 +13,23 @@ $message = $user_name." joined your room!";
 $query = "SELECT * FROM ROOM R JOIN USER U ON R.OWNER_ID = U.USER_ID WHERE R.ROOM_ID = '$room_id'";
 $result = mysql_query($query);
 while ($row = mysql_fetch_array($result)) {
-    $regi_id = $row["REGI_ID"];
+    array_push($registatoin_ids, $row["REGI_ID"]);
+    //$regi_id = $row["REGI_ID"];
 }
 
 $gcm = new GCM();
 $send_content = array("name"=> $user_name ,"title"=> $title ,"message"=> $message);
 
-$result_android = $gcm->send_notification($regi_id, $send_content, $ttl);
+$result_android = $gcm->send_notification($registatoin_ids, $send_content);
 
 class GCM{
 	function __construct(){}
-	public function send_notification($regi_id, $send_content){
+	public function send_notification($registatoin_ids, $send_content){
 	$url = "https://android.googleapis.com/gcm/send";
 	$fields = array(
 					"collapse_key" => "score_update",
 					"delay_while_idle" => true,
-					"registration_ids" => $regi_id,
+					"registration_ids" => $registatoin_ids,
 					"data" => $send_content
 					);
 
