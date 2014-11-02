@@ -15,17 +15,19 @@ while ($row = mysql_fetch_array($result)) {
 }
 
 //送りたいメッセージ
-$message      = "the test message";
+$notificationMsg = "You got a message from MEeTRO.";
 $roomId   = $room_id;
-$contentTitle = "content title";
-$contentText  = "content body";
-
+$msgTitle = "MEeTRO's information"
+$msgContext = $user_name." joined your ROOM[".$room_id."].";
 
 $response = sendNotification(
                GOOGLE_API_KEY,
                $registatoin_id,
-               array('message' => $message, 'roomId' => $roomId, 'contentTitle' => $contentTitle,
-               "contentText" => $contentText) );
+               array(
+                'notificationMsg' => $notificationMsg,
+                'msgTitle' => $msgTitle,
+                'msgContext' => $msgContext)
+               );
 
 echo $response;
 
