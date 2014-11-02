@@ -16,7 +16,7 @@ while ($row = mysql_fetch_array($result)) {
 
 //送りたいメッセージ
 $message      = "the test message";
-$tickerText   = "ticker text message";
+$roomId   = $room_id;
 $contentTitle = "content title";
 $contentText  = "content body";
 
@@ -24,7 +24,7 @@ $contentText  = "content body";
 $response = sendNotification(
                GOOGLE_API_KEY,
                $registatoin_id,
-               array('message' => $message, 'tickerText' => $tickerText, 'contentTitle' => $contentTitle,
+               array('message' => $message, 'roomId' => $roomId, 'contentTitle' => $contentTitle,
                "contentText" => $contentText) );
 
 echo $response;
