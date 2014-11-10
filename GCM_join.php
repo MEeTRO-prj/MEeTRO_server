@@ -17,7 +17,7 @@ while ($row = mysql_fetch_array($result)) {
 //送りたいメッセージ
 $notificationMsg = "You got a message from MEeTRO.";
 $roomId   = $room_id;
-$msgTitle = "MEeTRO's information"
+$msgTitle = "MEeTRO's information";
 $msgContext = $user_name." joined your ROOM[".$room_id."].";
 
 $response = sendNotification(
