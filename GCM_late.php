@@ -3,10 +3,12 @@ include_once './DbConnect.php';
 
 $registatoin_id = array();
 $room_id = $_POST["ROOM_ID"];
+$user_id = $_POST["USER_ID"];
 $user_name = $_POST["USER_NAME"];
 
-// DBからOwnerのRegistrationIdを取得する
-$query = "SELECT * FROM ROOM R JOIN USER U ON R.OWNER_ID = U.USER_ID WHERE R.ROOM_ID = '$room_id'";
+// DBから自分以外の部屋参加者のRegistrationIdを取得する
+$query = "SELECT U.REGI_ID FROM MEMBER M JOIN USER U ON M.USER_ID = U.USER_ID WHERE M.ROOM_ID = '$room_id' AND M.USER_ID != '$user_id'";
+// $query = "SELECT * FROM ROOM R JOIN USER U ON R.OWNER_ID = U.USER_ID WHERE R.ROOM_ID = '$room_id'";
 $result = mysql_query($query);
 while ($row = mysql_fetch_array($result)) {
     array_push($registatoin_id, $row["REGI_ID"]);
